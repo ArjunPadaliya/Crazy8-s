@@ -20,7 +20,7 @@ public class Deck {
 		}
 	}
 	
-	public ArrayList<String> shuffle(ArrayList al)
+	public ArrayList<String> shuffle(ArrayList<String> al)
 	{
 		Collections.shuffle(arrayOfCards);
 		return al;
@@ -28,12 +28,17 @@ public class Deck {
 	
 	public void reset()
 	{
-		arrayOfCards = shuffle(graveYardCards);
+		
+		arrayOfCards.addAll(graveYardCards);
 		graveYardCards.clear();
+		this.shuffle(arrayOfCards);
 	}
 	
 	public void flip()
 	{
+		graveYardCards.add(arrayOfCards.get(0));
+		arrayOfCards.remove(0);
+				
 	}
 	
 	
