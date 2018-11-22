@@ -6,8 +6,6 @@ public class Crazy8sRun {
 	public static void main(String[] args) {
 		
 		Scanner scanner = new Scanner(System.in);
-		
-		ArrayList<String> nameOfPlayers = new ArrayList<String>();
 		ArrayList<Player> playerObjects = new ArrayList<Player>();
 		
 		System.out.println("Welcome to Crazy8s\n\n");
@@ -36,7 +34,13 @@ public class Crazy8sRun {
 			System.out.println("Player "+ nameOfPlayers.get(i) + " joined the game");
 		}*/
 		
-		
+		for (int i=0; i<5; i++)
+		{
+			for (int j=0; j<playerObjects.size(); j++)
+			{
+				playerObjects.get(j).setHand();
+			}
+		}
 		
 	}
 

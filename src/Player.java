@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Player {
 	
 	public String name;
-	public ArrayList<String> hand;
+	public ArrayList<String> hand = new ArrayList<String>();
 	public int bank;
 	
 	public Player(String name)
@@ -22,8 +22,13 @@ public class Player {
 		return this.bank;
 	}
 	
-	public String getCards()
+	public void setHand()
 	{
-		return Deck.getInstance().dealCards();
+		this.hand.add(Deck.getInstance().dealCards());
+	}
+	
+	public ArrayList<String> getHand()
+	{
+		return this.hand;
 	}
 }
