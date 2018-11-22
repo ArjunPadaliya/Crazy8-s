@@ -49,7 +49,7 @@ public class Deck {
 		return card.charAt(0);
 	}
 	
-	public char getSuit(String card)
+	private char getSuit(String card)
 	{
 		return card.charAt(1);
 	}
