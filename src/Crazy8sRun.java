@@ -1,38 +1,42 @@
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Crazy8sRun {
 
 	public static void main(String[] args) {
 		
-		//Creates Deck Object
-		Deck obj = new Deck();
+		Scanner scanner = new Scanner(System.in);
 		
-		System.out.println("\n" + "- Print Deck and Print Shuffled Deck - ");
-		//Prints the ArrayList of cards
-		System.out.println(obj.arrayOfCards);
+		ArrayList<String> nameOfPlayers = new ArrayList<String>();
+		ArrayList<Player> playerObjects = new ArrayList<Player>();
 		
-		//Shuffles and then prints the array of cards
-		obj.shuffle(obj.arrayOfCards);
-		System.out.println(obj.arrayOfCards);
+		System.out.println("Welcome to Crazy8s\n\n");
 		
-		//Prints discard pile and deck after filling the graveYard arrayList with elements from the arrayOfCards arrayList
-		System.out.println("\n" + "- Flip function -");
-		for (int x = 0; x < 52; x++)
+		//rule
+		
+		System.out.println("Enter the number of players:");
+		int numberOfPlayers = scanner.nextInt();
+	
+		//System.out.printf("%d players will be playing the game\n", numberOfPlayers);
+		
+		System.out.printf("\n");
+		
+		for (int i=0; i<numberOfPlayers; i++)
 		{
-			obj.flip();
-			
+			System.out.printf("Enter the name of player %d:", i+1);
+			String name = scanner.next();
+			Player temp = new Player(name);
+			playerObjects.add(temp);
 		}
-		System.out.println("Discarded cards: ");
-		System.out.println(obj.graveYardCards);
-		System.out.println("Array of cards: ");
-		System.out.println(obj.arrayOfCards);
 		
-		//Shuffles and resets the deck using the discard pile
-		System.out.println("\n" + "- Reset function - ");
-		obj.reset();
-		System.out.println("Discarded cards: ");
-		System.out.println(obj.graveYardCards);
-		System.out.println("Array of cards: ");
-		System.out.println(obj.arrayOfCards);
+		System.out.printf("\n");
+		
+		/*for (int i=0; i<nameOfPlayers.size(); i++)
+		{
+			System.out.println("Player "+ nameOfPlayers.get(i) + " joined the game");
+		}*/
+		
+		
 		
 	}
 
