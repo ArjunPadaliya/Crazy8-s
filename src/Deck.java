@@ -2,11 +2,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Deck {
-	public ArrayList<String> arrayOfCards = new ArrayList<String>();
-	public ArrayList<String> graveYardCards = new ArrayList<String>();
-	public String topCard = "";
+	private ArrayList<String> arrayOfCards = new ArrayList<String>();
+	private ArrayList<String> graveYardCards = new ArrayList<String>();
+	private String topCard = "";
+	private static Deck deckObj;
 	
-	public Deck()
+	
+	private Deck()
 	{
 		String[] cards = {"1D", "2D", "3D", "4D", "5D", "6D", "7D", "8D", "9D", "10D", "11D", "12D", "13D",
 						"1S", "2S", "3S", "4S", "5S", "6S", "7S", "8S", "9S", "10S", "11S", "12S", "13S",
@@ -18,28 +20,69 @@ public class Deck {
 		{
 		     arrayOfCards.add(cards[i]);
 		}
+		shuffle();
+		flip();
+		
 	}
 	
-	public ArrayList<String> shuffle(ArrayList<String> al)
+	private void shuffle()
 	{
 		Collections.shuffle(arrayOfCards);
-		return al;
 	}
 	
-	public void reset()
+	private void reset()
 	{
-		
 		arrayOfCards.addAll(graveYardCards);
 		graveYardCards.clear();
-		this.shuffle(arrayOfCards);
+		shuffle();
 	}
 	
-	public void flip()
+	private void flip()
 	{
-		graveYardCards.add(arrayOfCards.get(0));
+		graveYardCards.add(arrayOfCards.get(0));	
 		arrayOfCards.remove(0);
-				
+		topCard = graveYardCards.get(graveYardCards.size() -1);
 	}
 	
+	private int getNumber(String card)
+	{
+		return card.charAt(0);
+	}
 	
+	public char getSuit(String card)
+	{
+		return card.charAt(1);
+	}
+	
+	private void playTurn(String card)
+	{
+		if (getNumber(card) == 8)
+		{
+			System.out.println("Number 8 works");
+		}
+		else if (getNumber(card) == getNumber(topCard))
+		{
+			System.out.println("Card number matches");
+		}
+		else if (getSuit(card) == getSuit(topCard))
+		{
+			System.out.println("Card suit matches");
+		}
+	}
+	
+	protected String dealCards()
+	{
+		String temp = arrayOfCards.get(0);
+		arrayOfCards.remove(0);
+		return temp;
+	}
+	
+	public static Deck getInstance()
+	{
+		if (deckObj == null)
+		{
+			deckObj = new Deck();
+		}
+		return deckObj;
+	}
 }
