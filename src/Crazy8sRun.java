@@ -42,6 +42,11 @@ public class Crazy8sRun {
 			}
 		}
 		
+		for (int j=0; j<playerObjects.size(); j++)
+		{
+			System.out.println("Cards of player " +playerObjects.get(j).getName() +playerObjects.get(j).getHand());
+		}
+		
 	}
 
 }
