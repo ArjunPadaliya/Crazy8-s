@@ -27,12 +27,17 @@ public class Crazy8sRun {
 			playerObjects.add(temp);
 		}
 		
+		
 		System.out.printf("\n");
 		
-		/*for (int i=0; i<nameOfPlayers.size(); i++)
+		
+		
+		for (int i=0; i<playerObjects.size(); i++)
 		{
-			System.out.println("Player "+ nameOfPlayers.get(i) + " joined the game");
-		}*/
+			System.out.println("Player "+ playerObjects.get(i).getName() + " joined the game");
+		}
+		
+		System.out.printf("\n");
 		
 		for (int i=0; i<5; i++)
 		{
@@ -42,9 +47,11 @@ public class Crazy8sRun {
 			}
 		}
 		
+		
+		
 		for (int j=0; j<playerObjects.size(); j++)
 		{
-			System.out.println("Cards of player " +playerObjects.get(j).getName() +playerObjects.get(j).getHand());
+			System.out.println(playerObjects.get(j).getName() + "'s hand: "+ playerObjects.get(j).getHand());
 		}
 		
 	}
