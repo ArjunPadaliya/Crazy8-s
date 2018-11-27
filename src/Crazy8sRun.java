@@ -7,22 +7,38 @@ public class Crazy8sRun {
 		
 		Scanner scanner = new Scanner(System.in);
 		ArrayList<Player> playerObjects = new ArrayList<Player>();
+		int numberOfPlayers;
 		
 		System.out.println("Welcome to Crazy8s\n\n");
 		
 		//rule
-		
-		System.out.println("Enter the number of players:");
-		int numberOfPlayers = scanner.nextInt();
+		while(true)
+		{
+			System.out.print("Enter the number of players: ");
+			numberOfPlayers = scanner.nextInt();
+			if (!(numberOfPlayers > 5))
+				break;
+			System.out.println("Please enter less than 5 players");
+		}
 	
 		//System.out.printf("%d players will be playing the game\n", numberOfPlayers);
 		
 		System.out.printf("\n");
 		
+		
 		for (int i=0; i<numberOfPlayers; i++)
 		{
-			System.out.printf("Enter the name of player %d:", i+1);
-			String name = scanner.next();
+			String name;
+			while(true)
+			{
+				System.out.printf("Enter the name of player %d:", i+1);
+				name = scanner.next();
+				if (!(name.length()>10))
+				{
+					break;
+				}
+				System.out.println("Please enter less than 10 letters for name");
+			}
 			Player temp = new Player(name);
 			playerObjects.add(temp);
 		}
