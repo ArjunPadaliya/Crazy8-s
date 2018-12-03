@@ -1,9 +1,11 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Scanner;
 
 public class Deck {
 	private ArrayList<String> arrayOfCards = new ArrayList<String>();
 	private ArrayList<String> graveYardCards = new ArrayList<String>();
+	Scanner scanner = new Scanner(System.in);
 	private String topCard = "";
 	private static Deck deckObj;
 	
@@ -21,6 +23,7 @@ public class Deck {
 		}
 		shuffle();
 		flip();
+		System.out.println("Top card: " +topCard);
 		
 	}
 	
@@ -45,28 +48,88 @@ public class Deck {
 	
 	private int getNumber(String card)
 	{
-		return card.charAt(0);
+		String temp = "";
+		if (card.startsWith("#"))
+			return 0;
+		for (int i=0; i<card.length(); i++)
+		{
+			if (Character.isDigit(card.charAt(i)) == true)
+			{
+				temp += card.charAt(i);
+			}
+		}
+		//System.out.println(Integer.parseInt(temp));
+		return Integer.parseInt(temp);	
 	}
 	
 	private char getSuit(String card)
 	{
-		return card.charAt(1);
+		return card.charAt(card.length()-1);
 	}
 	
-	private void playTurn(String card)
+	protected String playTurn(String card)
 	{
-		if (getNumber(card) == 8)
+		//System.out.println("Card played: " +card);
+		if(this.topCard != null)
 		{
-			System.out.println("Number 8 works");
+			if (getNumber(card) == 8)
+			{
+				while(true)
+				{
+					System.out.print("Please select the card suit [C, D, H, S]: ");
+					int cardSuit = scanner.nextInt();
+					if (cardSuit == 1)
+					{
+						topCard = "#C";
+						return topCard;
+					}
+					else if (cardSuit == 2)
+					{	
+						topCard = "#D";
+						return topCard;
+					}
+						
+					else if (cardSuit == 3)
+					{
+						topCard = "#H";
+						return topCard;
+					}
+					else if (cardSuit == 4)
+					{
+						topCard = "#S";
+						return topCard;
+					}
+					else
+					{
+						System.out.println("Please enter a valid number to select a card");
+					}
+				}
+			}
+			if (getNumber(card) == 0)
+			{
+				String temp = arrayOfCards.get(0);
+				arrayOfCards.remove(0);
+				return temp;
+			}
+			else if (getNumber(card) == getNumber(topCard))
+			{
+				System.out.println("Card number matches");
+				this.topCard = card;
+			}
+			else if (getSuit(card) == getSuit(topCard))
+			{
+				System.out.println("Card suit matches");
+				this.topCard = card; 
+			}
+			else
+			{
+				System.out.println("Please play a card that matches top card's suit or number");
+				return null;
+			}
+			//System.out.println("Deck topcard: " +topCard);
+			return topCard;
 		}
-		else if (getNumber(card) == getNumber(topCard))
-		{
-			System.out.println("Card number matches");
-		}
-		else if (getSuit(card) == getSuit(topCard))
-		{
-			System.out.println("Card suit matches");
-		}
+		return null;
 	}
 	
 	protected String dealCards()
@@ -83,5 +146,9 @@ public class Deck {
 			deckObj = new Deck();
 		}
 		return deckObj;
+	}
+
+	public String getTopCard() {
+		return topCard;
 	}
 }

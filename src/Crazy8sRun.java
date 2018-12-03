@@ -8,6 +8,8 @@ public class Crazy8sRun {
 		Scanner scanner = new Scanner(System.in);
 		ArrayList<Player> playerObjects = new ArrayList<Player>();
 		int numberOfPlayers;
+		int playerTurn = 0;
+		String topCard = null;
 		
 		System.out.println("Welcome to Crazy8s\n\n");
 		
@@ -55,7 +57,7 @@ public class Crazy8sRun {
 		
 		System.out.printf("\n");
 		
-		for (int i=0; i<5; i++)
+		for (int i=0; i<2; i++)
 		{
 			for (int j=0; j<playerObjects.size(); j++)
 			{
@@ -65,11 +67,29 @@ public class Crazy8sRun {
 		
 		
 		
-		for (int j=0; j<playerObjects.size(); j++)
+		/*for (int j=0; j<playerObjects.size(); j++)
 		{
 			System.out.println(playerObjects.get(j).getName() + "'s hand: "+ playerObjects.get(j).getHand());
-		}
+		}*/
 		
+		while(true)
+		{
+			playerTurn = playerTurn % numberOfPlayers;
+			if(playerObjects.get(playerTurn).getHand() == null)
+			{
+				break;
+			}
+			while(true)
+			{
+				System.out.print(playerObjects.get(playerTurn).getName()+" Please enter the card number you would like to play " +playerObjects.get(playerTurn).getHand() + ":" );
+				int cardNum = scanner.nextInt();
+				topCard = playerObjects.get(playerTurn).play(cardNum);
+				if(topCard != null)
+					break;
+			}
+			playerTurn++;
+			System.out.println("\nTop Card: " +topCard);
+		}
 	}
 
 }

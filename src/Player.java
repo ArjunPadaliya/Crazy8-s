@@ -31,4 +31,24 @@ public class Player {
 	{
 		return this.hand;
 	}
+	
+	public String play(int num)
+	{
+		if (num == 0)
+		{
+			hand.add(Deck.getInstance().playTurn("0"));
+			return Deck.getInstance().getTopCard();
+		}
+		String card = hand.get(num-1);
+		//System.out.println("Player card: " +card);
+		String topCard = Deck.getInstance().playTurn(card);
+		if (topCard != null)
+			hand.remove(num-1);
+		if (hand.isEmpty())
+		{
+			System.out.println("\n" + name + " has won the game");
+			System.exit(0);
+		}
+		return topCard;
+	}
 }
