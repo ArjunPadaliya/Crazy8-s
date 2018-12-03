@@ -41,6 +41,8 @@ public class Deck {
 	
 	private void flip()
 	{
+		if(getNumber(arrayOfCards.get(0)) == 8)
+			shuffle();
 		graveYardCards.add(arrayOfCards.get(0));	
 		arrayOfCards.remove(0);
 		topCard = graveYardCards.get(graveYardCards.size() -1);
@@ -139,7 +141,7 @@ public class Deck {
 		return temp;
 	}
 	
-	public static Deck getInstance()
+	protected static Deck getInstance()
 	{
 		if (deckObj == null)
 		{
@@ -148,7 +150,7 @@ public class Deck {
 		return deckObj;
 	}
 
-	public String getTopCard() {
+	protected String getTopCard() {
 		return topCard;
 	}
 }
