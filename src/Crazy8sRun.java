@@ -57,7 +57,7 @@ public class Crazy8sRun {
 		
 		System.out.printf("\n");
 		
-		for (int i=0; i<2; i++)
+		for (int i=0; i<5; i++)
 		{
 			for (int j=0; j<playerObjects.size(); j++)
 			{
@@ -65,12 +65,6 @@ public class Crazy8sRun {
 			}
 		}
 		
-		
-		
-		/*for (int j=0; j<playerObjects.size(); j++)
-		{
-			System.out.println(playerObjects.get(j).getName() + "'s hand: "+ playerObjects.get(j).getHand());
-		}*/
 		
 		while(true)
 		{
