@@ -18,9 +18,9 @@ public class Crazy8sRun {
 		{
 			System.out.print("Enter the number of players: ");
 			numberOfPlayers = scanner.nextInt();
-			if (!(numberOfPlayers > 5))
+			if (!(numberOfPlayers > 5) && !(numberOfPlayers < 2))
 				break;
-			System.out.println("Please enter less than 5 players");
+			System.out.println("Please enter at least 2 players and less than 5 players");
 		}
 	
 		//System.out.printf("%d players will be playing the game\n", numberOfPlayers);
@@ -75,7 +75,7 @@ public class Crazy8sRun {
 			}
 			while(true)
 			{
-				System.out.print(playerObjects.get(playerTurn).getName()+" Please enter the card number you would like to play " +playerObjects.get(playerTurn).getHand() + ":" );
+				System.out.print(playerObjects.get(playerTurn).getName()+" please enter the card number you would like to play " +playerObjects.get(playerTurn).getHand() + ":" );
 				int cardNum = scanner.nextInt();
 				topCard = playerObjects.get(playerTurn).play(cardNum);
 				if(topCard != null)
