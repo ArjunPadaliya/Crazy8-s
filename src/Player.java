@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Player {
 	
@@ -30,6 +33,28 @@ public class Player {
 	public ArrayList<String> getHand()
 	{
 		return this.hand;
+	}
+	
+	public ArrayList<String> sortHand()
+	{
+		Collections.sort(this.hand, new ValueComparator());
+		Collections.sort(this.hand, new SuitComparator());
+		return this.hand;
+	}
+	
+	public class SuitComparator implements Comparator<String> {
+	    @Override
+	    public int compare(String o1, String o2) {
+	        return o1.charAt(o1.length() - 1) - o2.charAt(o2.length() - 1);
+	    }
+	}
+	
+	public class ValueComparator implements Comparator<String> {
+	    @Override
+	    public int compare(String o1, String o2) {
+	        return o1.codePointBefore((o1.length()-2) + (o1.length() - 1)) - o2.codePointBefore((o2.length()-2) + (o2.length() - 1));
+	    	
+	    }
 	}
 	
 	public String play(int num)
