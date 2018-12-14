@@ -11,24 +11,36 @@ public class Crazy8sRun {
 		int playerTurn = 0;
 		int cardNum;
 		String topCard = null;
+		boolean isNumber;
 		
-		System.out.println("Welcome to Crazy8s\n\n");
+		System.out.println("\n_____________________\n");
+		System.out.println(" Welcome to Crazy8s!");
+		System.out.println("_____________________\n\n");
 		
-		//rule
-		while(true)
-		{
-			System.out.print("Enter the number of players: ");
-			numberOfPlayers = scanner.nextInt();
-			if (!(numberOfPlayers > 5) && !(numberOfPlayers < 2))
-				break;
-			System.out.println("Please enter at least 2 players and less than 5 players");
-		}
+		//TAKING IN NUMBER OF PLAYERS//
+		System.out.print("Please enter the number of players: ");
+		do {
+			while (true) {
+				if (scanner.hasNextInt()) {
+					numberOfPlayers = scanner.nextInt();
+					isNumber = true;
+					if (!(numberOfPlayers > 5) && !(numberOfPlayers < 2))
+						break;
+					System.out.println("Enter at least 2 players and less than 5 players");
+
+				} else {
+					System.out.printf("Please enter a valid number: ");
+					isNumber = false;
+					scanner.next();
+				}
+			} 
+		} while (!(isNumber));
 	
 		//System.out.printf("%d players will be playing the game\n", numberOfPlayers);
 		
 		System.out.printf("\n");
 		
-		
+		//TAKING IN PLAYER NAMES//
 		for (int i=0; i<numberOfPlayers; i++)
 		{
 			String name;
@@ -40,7 +52,7 @@ public class Crazy8sRun {
 				{
 					break;
 				}
-				System.out.println("Please enter less than 10 letters for name");
+				System.out.println("Enter less than 10 letters for name");
 			}
 			Player temp = new Player(name);
 			playerObjects.add(temp);
@@ -50,7 +62,7 @@ public class Crazy8sRun {
 		System.out.printf("\n");
 		
 		
-		
+		//DISPLAYING PLAYERS//
 		for (int i=0; i<playerObjects.size(); i++)
 		{
 			System.out.println("Player "+ playerObjects.get(i).getName() + " joined the game");
@@ -58,6 +70,10 @@ public class Crazy8sRun {
 		
 		System.out.printf("\n");
 		
+		System.out.println("\n~ To play a card, enter a number corresponding to the cards position in your hand.");
+		System.out.println("~ If you do not have a card to play, press 0 to pick up a card.\n");
+		
+		//GENERATING CARDS FOR EACH PLAYERS HAND//
 		for (int i=0; i<5; i++)
 		{
 			for (int j=0; j<playerObjects.size(); j++)
@@ -66,7 +82,7 @@ public class Crazy8sRun {
 			}
 		}
 		
-		
+		//CYCLING THROUGH PLAYERS AND PROMPTING THEM TO PLAY A CARD//
 		while(true)
 		{
 			playerTurn = playerTurn % numberOfPlayers;
