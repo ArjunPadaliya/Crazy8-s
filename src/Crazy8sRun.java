@@ -75,7 +75,7 @@ public class Crazy8sRun {
 			}
 			while(true)
 			{
-				System.out.print(playerObjects.get(playerTurn).getName()+" please enter the card number you would like to play " +playerObjects.get(playerTurn).getHand() + ":" );
+				System.out.print(playerObjects.get(playerTurn).getName()+" please enter the card number you would like to play " +playerObjects.get(playerTurn).sortHand() + ":" );
 				int cardNum = scanner.nextInt();
 				topCard = playerObjects.get(playerTurn).play(cardNum);
 				if(topCard != null)
