@@ -9,6 +9,7 @@ public class Crazy8sRun {
 		ArrayList<Player> playerObjects = new ArrayList<Player>();
 		int numberOfPlayers;
 		int playerTurn = 0;
+		int cardNum;
 		String topCard = null;
 		
 		System.out.println("Welcome to Crazy8s\n\n");
@@ -75,8 +76,16 @@ public class Crazy8sRun {
 			}
 			while(true)
 			{
-				System.out.print(playerObjects.get(playerTurn).getName()+" please enter the card number you would like to play " +playerObjects.get(playerTurn).sortHand() + ":" );
-				int cardNum = scanner.nextInt();
+				while(true)
+				{
+					System.out.print(playerObjects.get(playerTurn).getName()+" please enter the card number you would like to play " +playerObjects.get(playerTurn).sortHand() + ":" );
+					cardNum = scanner.nextInt();
+					if (!(playerObjects.get(playerTurn).getHand().size() < cardNum))
+					{		
+							break;
+					}
+					System.out.println("Please enter a valid card number");
+				}
 				topCard = playerObjects.get(playerTurn).play(cardNum);
 				if(topCard != null)
 					break;
