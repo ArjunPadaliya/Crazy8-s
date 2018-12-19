@@ -1,2 +1,2 @@
 # Crazy8-s
-A text based gambling card game.
+A text based card game.
